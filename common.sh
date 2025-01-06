@@ -484,7 +484,7 @@ for X in $(ls -1 "${HOME_PATH}/feeds/passwall3"); do
 done
 # 更换golang版本
 rm -rf ${HOME_PATH}/feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 22.x ${HOME_PATH}/feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 23.x ${HOME_PATH}/feeds/packages/lang/golang
 
 if [[ -d "${HOME_PATH}/feeds/danshui1/relevance/shadowsocks-libev" ]]; then
   rm -rf ${HOME_PATH}/feeds/packages/net/shadowsocks-libev
@@ -815,6 +815,8 @@ else
   /bin/bash zh-cn.sh && rm -rf zh-cn.sh
 fi
 ./scripts/feeds install -a > /dev/null 2>&1
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 # 使用自定义配置文件
 [[ -f ${BUILD_PATH}/$CONFIG_FILE ]] && mv ${BUILD_PATH}/$CONFIG_FILE .config
 }
@@ -1127,6 +1129,8 @@ function Diy_feeds() {
 echo "正在执行：安装feeds,请耐心等待..."
 cd ${HOME_PATH}
 ./scripts/feeds install -a
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 
 if [[ ! -f "${HOME_PATH}/staging_dir/host/bin/upx" ]]; then
   cp -Rf /usr/bin/upx ${HOME_PATH}/staging_dir/host/bin/upx
